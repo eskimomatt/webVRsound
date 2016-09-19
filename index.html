@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hello, World! - A-Frame</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+    <script src="https://aframe.io/releases/0.3.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+
+      <a-assets>
+      </a-assets>
+
+      <a-entity position="0 0 0" rotation="0 28 0">
+        <a-camera near="0.1" user-height="0" look-controls wasd-controls>
+          <a-entity cursor="fuse: true; timeout: 500"
+            position="0 0 -1"
+            geometry="primitive: ring;radiusOuter: 0.030;radiusInner: 0.015;"
+            material="color: black; shader: flat">
+            <a-animation begin="click" easing="ease-in" attribute="scale"
+                         fill="both" to="1 1 1"></a-animation>
+            <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale"
+                         fill="both" from="1 1 1" to="0.1 0.1 0.1"></a-animation>
+            
+          </a-entity>
+        </a-camera>
+      </a-entity>
+
+      <a-entity id="box" position="0 0 -5" geometry="primitive: box" material="color: blue">
+        <a-animation begin="click" attribute="position" to="0 0 -100" dur="2000" fill="both"></a-animation>
+        <a-animation begin="mouseleave" attribute="position" to="0 0 -5" dur="2000" fill="both"></a-animation>
+      </a-entity>
+
+
+    </a-scene>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
