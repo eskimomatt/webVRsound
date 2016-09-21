@@ -28,7 +28,7 @@
         </a-camera>
       </a-entity>
 
-      <a-entity id="box" position="-10 0 -5" geometry="primitive: box" material="color: blue">
+      <a-entity id="box" position="-10 0 -5" geometry="primitive: box" material="color: blue" sound="src: url(mp3/uke.mp3); autoplay: true; loop: true; on: click">
         <a-animation begin="click" attribute="position" to="0 0 -100" dur="2000" fill="both"></a-animation>
         <a-animation begin="mouseleave" attribute="position" to="0 0 -5" dur="2000" fill="both"></a-animation>
       </a-entity>
