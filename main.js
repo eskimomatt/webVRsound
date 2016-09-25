@@ -32,6 +32,11 @@ AUDIO STUFF
 https://threejs.org/docs/index.html#Reference/Loaders/AudioLoader
 */
 
+/*
+3D AUDIO STUFF
+view-source:https://threejs.org/examples/misc_sound.html
+*/
+
 var scene = $('#scene');
 var camera = $('#camera');
 
@@ -41,27 +46,27 @@ var audioListener = new THREE.AudioListener();
 // add the listener to the camera
 camera.add( audioListener );
 
-// instantiate audio object
-var ukeSound = new THREE.Audio( audioListener );
-
-// add the audio object to the scene
-scene.add( ukeSound );
-
 // instantiate a loader
 var loader = new THREE.AudioLoader();
 
+// instantiate audio object
+var ukeSound = new THREE.PositionalAudio( audioListener );
+
+// add the audio object to the scene
+//scene.add( ukeSound );
+
 // load a resource
-loader.load(
-  // resource URL
-  './mp3/uke.mp3',
-  // Function when resource is loaded
-  function ( audioBuffer ) {
+loader.load('./mp3/uke.mp3', function ( audioBuffer ) {
     // set the audio object buffer to the loaded object
     ukeSound.setBuffer( audioBuffer );
-
     // play the audio
+    ukeSound.setRefDistance(20);
+    ukeSound.setLoop(true);
     ukeSound.play();
-  },
+  }
+
+  /*
+  ,
   // Function called when download progresses
   function ( xhr ) {
     console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
@@ -70,7 +75,10 @@ loader.load(
   function ( xhr ) {
     console.log( 'An error happened' );
   }
+  */
 );
+
+$('#box-red').add(ukeSound);
 
 /* 
 AUDIO STUFF -- END
