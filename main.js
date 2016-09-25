@@ -27,5 +27,52 @@ jQuery(document).ready(function($) {
   });
 });
 
+/* 
+AUDIO STUFF
+https://threejs.org/docs/index.html#Reference/Loaders/AudioLoader
+*/
 
+var scene = $('#scene');
+var camera = $('#camera');
+
+// instantiate a listener
+var audioListener = new THREE.AudioListener();
+
+// add the listener to the camera
+camera.add( audioListener );
+
+// instantiate audio object
+var ukeSound = new THREE.Audio( audioListener );
+
+// add the audio object to the scene
+scene.add( ukeSound );
+
+// instantiate a loader
+var loader = new THREE.AudioLoader();
+
+// load a resource
+loader.load(
+  // resource URL
+  './mp3/uke.mp3',
+  // Function when resource is loaded
+  function ( audioBuffer ) {
+    // set the audio object buffer to the loaded object
+    ukeSound.setBuffer( audioBuffer );
+
+    // play the audio
+    ukeSound.play();
+  },
+  // Function called when download progresses
+  function ( xhr ) {
+    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+  },
+  // Function called when download errors
+  function ( xhr ) {
+    console.log( 'An error happened' );
+  }
+);
+
+/* 
+AUDIO STUFF -- END
+*/
 
